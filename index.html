@@ -6,13 +6,6 @@
     <title>Unity WebGL Player | Project_QT_Proto</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <style>
-      #unity-webgl-logo,
-      #unity-fullscreen-button,
-      #unity-build-title {
-        display: none;
-      }
-    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -64,11 +57,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/GTWeb.loader.js";
+      var loaderUrl = buildUrl + "/gt_webBuild.loader.js";
       var config = {
-        dataUrl: buildUrl + "/GTWeb.data.unityweb",
-        frameworkUrl: buildUrl + "/GTWeb.framework.js.unityweb",
-        codeUrl: buildUrl + "/GTWeb.wasm.unityweb",
+        dataUrl: buildUrl + "/gt_webBuild.data.unityweb",
+        frameworkUrl: buildUrl + "/gt_webBuild.framework.js.unityweb",
+        codeUrl: buildUrl + "/gt_webBuild.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Project_QT_Proto",
@@ -99,30 +92,11 @@
 
 
       } else {
-         window.addEventListener('resize', onWindowResize);
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-   	 function onWindowResize() {
-         const targetRatio = 9 / 16;
-         const fixedWidth = 540;
-   	     const fixedHeight = 960;
-
-         const canvas = document.getElementById('unity-canvas');
-
-         let windowWidth = window.innerWidth;
-   	     let windowHeight = window.innerHeight;
-         const currentRatio = windowWidth / windowHeight;
-         if (currentRatio > targetRatio) {
-           windowWidth = windowHeight * targetRatio;
-         }
-         else if (currentRatio < targetRatio) {
-           windowHeight = windowWidth / targetRatio;
-         }
-         canvas.style.width = windowWidth + 'px';
-         canvas.style.height = windowHeight + 'px';
-  	  }
-	  onWindowResize();
-	}
-
+        canvas.style.width = "540px";
+        canvas.style.height = "960px";
+      }
 
       loadingBar.style.display = "block";
 
