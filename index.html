@@ -6,6 +6,13 @@
     <title>Unity WebGL Player | Project_QT_Proto</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <style>
+      #unity-webgl-logo,
+      #unity-fullscreen-button,
+      #unity-build-title {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -92,11 +99,29 @@
 
 
       } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+         window.addEventListener('resize', onWindowResize);
 
-        canvas.style.width = "540px";
-        canvas.style.height = "960px";
-      }
+        function onWindowResize() {
+         const targetRatio = 9 / 16;
+         const fixedWidth = 540;
+            const fixedHeight = 960;
+
+         const canvas = document.getElementById('unity-canvas');
+
+         let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+         const currentRatio = windowWidth / windowHeight;
+         if (currentRatio > targetRatio) {
+           windowWidth = windowHeight * targetRatio;
+         }
+         else if (currentRatio < targetRatio) {
+           windowHeight = windowWidth / targetRatio;
+         }
+         canvas.style.width = windowWidth + 'px';
+         canvas.style.height = windowHeight + 'px';
+        }
+      onWindowResize();
+    }
 
       loadingBar.style.display = "block";
 
